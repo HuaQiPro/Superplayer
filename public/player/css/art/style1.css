@@ -37,9 +37,9 @@ input,button,select,textarea{border:0;background: 0 0;border-radius:0;outline: m
 /*----------------
 等待页面
 ----------------*/
-.bg{background-color:#000;background-image: url(../../img/asset-53.jpg);width: 100%;height: 100%;opacity: .38;position: absolute;background-size: cover;background-position: center;background-repeat: no-repeat;}
+.bg{background-color:#000;background-image: url("https://dd-static.jd.com/ddimg/jfs/t1/173245/15/28822/346324/62fcb4b0Eb437d047/136a1e04890320b8.jpg");width: 100%;height: 100%;opacity: .38;position: absolute;background-size: cover;background-position: center;background-repeat: no-repeat;}
 .main{position:absolute;left:1px;right:1px;top:1px;bottom:1px;margin:auto;height:15vh;width:100%;z-index:1;text-align:center}
-.main .loading{width:60px;height:60px;display:inline-block;vertical-align:middle;animation:Loading .6s steps(8,end) infinite;background:#b3b2b2 url(../../img/load.svg) no-repeat;background-size:100%;border-radius:50px;border:10px solid #b3b2b2;box-sizing:border-box}
+.main .loading{width:60px;height:60px;display:inline-block;vertical-align:middle;animation:Loading .6s steps(8,end) infinite;background:#b3b2b2 url("https://jsd.onmicrosoft.cn/gh/HuaQiPro/Superplayer@1.0.8/public/player/img/load.svg") no-repeat;background-size:100%;border-radius:50px;border:10px solid #b3b2b2;box-sizing:border-box}
 .main .tips{color:#fff;margin-top:30px;font-size:16px;font-weight:600}
 @keyframes Loading{0%{-webkit-transform:rotate3d(0,0,1,0deg);transform:rotate3d(0,0,1,0deg)}100%{-webkit-transform:rotate3d(0,0,1,360deg);transform:rotate3d(0,0,1,360deg)}}
 @media(max-width:1239px){.main .loading{height:48px;width:48px}}
@@ -142,7 +142,7 @@ img{border:none;max-width:100%;height:auto;vertical-align:top}
 .list-bnt span{line-height:28px;display:block;color:#fff;font-size:12px}
 .list-err{width:100%;text-align:center;position:fixed;top:50%;left:50%;z-index:99999;transform:translateX(-50%) translateY(-50%);margin:0 auto;color:#999;font-size:14px}
 .list-retry{left:21px;bottom:21px;width:72px;height:30px;border-radius:15px;background:#ff008c;font-size:12px;line-height:30px;text-align:center;color:#fff;font-weight:500;display:inline-block;margin-bottom:10px}
-.d-on:after{content:"";position:absolute;bottom:3px;left:3px;width:10px;height:8px;background:url(../../img/playon-green.gif) no-repeat}
+.d-on:after{content:"";position:absolute;bottom:3px;left:3px;width:10px;height:8px;background:url("https://img10.360buyimg.com/babel/jfs/t20260214/149993/20/38165/1332/65ce2962Fbb4cd4bb/85b6b7f5b0b05eee.gif") no-repeat}
 
 /*--------------
 弹幕
@@ -164,9 +164,9 @@ img{border:none;max-width:100%;height:auto;vertical-align:top}
 .dm-send{background:rgba(34,34,34,.6);border-radius:0 3px 3px 0;width:60px;height:32px;position:absolute;right:0;top:0;vertical-align:top;font-weight:400;cursor:pointer;font-size:13px}
 .dm-box-left{width:72px}
 .dm-box-cc,.dm-box-set{background-repeat:no-repeat;width:24px;height:24px;vertical-align:middle;margin-right:12px!important;cursor:pointer;display:inline-block;margin-top:5px!important;background-size:24px 24px}
-.dm-box-cc{background-image: url(../../img/1.png);}
-.dm-box-cc2{background-image: url(../../img/2.png);}
-.dm-box-set{background-image: url(../../img/3.png);}
+.dm-box-cc{background-image: url("https://img10.360buyimg.com/babel/jfs/t20260214/249882/35/4452/4857/65ce29a8F660fb98f/a911118a84755d58.png");}
+.dm-box-cc2{background-image: url("https://img10.360buyimg.com/babel/jfs/t20260214/122558/3/42893/3818/65ce29d7F693dde20/cdca27130daaee43.png");}
+.dm-box-set{background-image: url("https://img10.360buyimg.com/babel/jfs/t20260214/89589/10/43200/3249/65ce29f3F22c79268/b1a6cc1f59ee816b.png");}
 .dm-box-t{position:absolute;left:6px}
 .dm-box-t-img{width:20px;height:19px;display:inline-block;cursor:pointer;vertical-align:middle!important}
 .dm-style-box{position:absolute;left:-113px;bottom:45px;width:236px;font-size:14px;padding:7px 10px;text-align:left}
@@ -175,7 +175,7 @@ img{border:none;max-width:100%;height:auto;vertical-align:top}
 .ec-no-c{pointer-events:none;cursor:not-allowed!important;color:#999}
 .dm-style-title{font-size:12px;color:#f2f2f2;letter-spacing:0;margin-left:6px!important}
 .dm-style-box .item{color:#fff;width:60px;height:24px;text-align:center;border-radius:13px;border:1px solid;cursor:pointer;margin:3px 6px;font-size:12px;line-height:24px;position:relative}
-.dm-style-box .on-1 i{position:absolute;width:16px;height:14px;right:-1px;bottom:-1px;background:url(../../img/5.png) no-repeat;background-size:16px}
+.dm-style-box .on-1 i{position:absolute;width:16px;height:14px;right:-1px;bottom:-1px;background:url("https://img10.360buyimg.com/babel/jfs/t20260214/238916/19/4420/914/65ce2a2aF30501330/37da0aafaf93f660.png") no-repeat;background-size:16px}
 .dm-set-list{display:none}
 .ds-set-show{display:block}
 .dm-set-box{position:absolute;left:0;width:200px;bottom:45px;padding:7px 0!important;font-size:14px;color:#fff}
