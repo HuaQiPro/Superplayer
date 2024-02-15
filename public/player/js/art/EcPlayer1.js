@@ -213,10 +213,11 @@ let PlayEr = {
         playData["setting"] = true;
         playData["url"] = u;
         if(t === 'flv') {
-            $("title").after('<script src="../player/js/flv.min.js"></script>');
+            $("title").after('<script src="https://jsd.onmicrosoft.cn/gh/HuaQiPro/Superplayer@1.0.9/public/player/js/flv.min.js"></script>');
             playData["type"] = 'flv';
             playData["customType"]={
                 flv: function playFlv(video, url, art) {
+                    window.onload = function() {
                     if (flvjs.isSupported()) {
                         const flv = flvjs.createPlayer({ type: 'flv', url });
                         flv.attachMediaElement(video);
@@ -226,14 +227,15 @@ let PlayEr = {
                         art.once('destroy', () => flv.destroy());
                     } else {
                         art.notice.show = 'Unsupported playback format: flv';
-                    }
+                    }}
                 }
             }
         }else if(t === 'm3u8' || t === 'hls'){
-            $("title").after('<script src="../player/js/hls.min.js"></script>');
+            $("title").after('<script src="https://jsd.onmicrosoft.cn/gh/HuaQiPro/Superplayer@1.0.9/public/player/js/hls.min.js"></script>');
             playData["type"] = 'm3u8';
             playData["customType"]={
                 m3u8: function playM3u8(video, url, art) {
+                    window.onload = function() {
                     if (Hls.isSupported()) {
                         const hls = new Hls();
                         hls.loadSource(url);
@@ -245,7 +247,7 @@ let PlayEr = {
                         video.src = url;
                     } else {
                         art.notice.show = 'Unsupported playback format: m3u8';
-                    }
+                    }}
                 }
             }
         }
@@ -278,13 +280,6 @@ let PlayEr = {
                 PlayEr.ad.Action();
             }
         }
-        console.log(
-            "\n" +
-            " %c 超级播放器® %c Q"+"Q6"+"02"+"5"+"24"+"9"+"50 " +
-            "\n",
-            "color: #fadfa3; background: #030307; padding:5px 0; font-size:18px;",
-            "background: #fadfa3; padding:5px 0; font-size:18px;"
-        );
     },
     "load" : function(){
         PlayEr.play();
@@ -301,7 +296,7 @@ let PlayEr = {
             '<div class="dm-style-title">'+lg['dm-color']+'</div><div class="content_dmP-2 flex"><div class="item on-1">'+lg['gtc']+'<i></i></div><div class="item" data-color="#02CC92" style="color:#02CC92;border-color:#02CC92;">青草绿<i></i></div>\n' +
             '<div class="item" data-color="#03A5FF"  style="color:#03A5FF;border-color:#03A5FF;">香菇蓝<i></i></div><div class="item" data-color="#FF893B"  style="color:#FF893B;border-color:#FF893B;">暖阳橙<i></i></div>\n' +
             '<div class="item" data-color="#FC265E"  style="color:#FC265E;border-color:#FC265E;">喜庆红<i></i></div><div class="item" data-color="#BE8DF7"  style="color:#BE8DF7;border-color:#BE8DF7;">销魂紫<i></i></div>\n' +
-            '</div></div><img alt="弹幕颜色" class="dm-box-t-img" src="/player/img/4.png"></div><input class="dm-input" type="text" data-time="'+ConFig['config']['danMu_interval']+'" autocomplete="off" placeholder="'+lg['dm-input']+'" maxlength="'+ConFig['config']['danMu_length']+'">\n' +
+            '</div></div><img alt="弹幕颜色" class="dm-box-t-img" src="https://img10.360buyimg.com/babel/jfs/t20260214/249761/19/4364/1818/65ce2c71F953bb2e2/11fa110571c8b7ce.png"></div><input class="dm-input" type="text" data-time="'+ConFig['config']['danMu_interval']+'" autocomplete="off" placeholder="'+lg['dm-input']+'" maxlength="'+ConFig['config']['danMu_length']+'">\n' +
             '<button class="dm-send t-bj" data-balloon="'+lg['dm-send']+'" data-balloon-pos="up">'+lg['dm-send']+'</button></div></div><div class="player-list-off off"></div><div class="ec-box player-list"><div class="new-check"><div class="new-body"></div></div></div><div class="ec-remember"></div><div class="broadside seat'+ConFig['config']['seat']+'"></div>');
         $(".art-controls-right").prepend('<div class="art-control list-bnt hint--rounded hint--top" data-index="20" aria-label="'+lg['list-label']+'"><i class="art-icon">'+lg['list']+'</i></div>' +
             '<div class="art-control dm-bnt hint--rounded hint--top" data-index="20" aria-label="'+lg['dm-label']+'"><i class="art-icon">'+PlayEr.svg.dm+'</i></div>' +
@@ -422,7 +417,10 @@ let PlayEr = {
                 case 0:
                     html = '<p class="ec-h mt-5">'+ConFig["tips"]["jx_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p>';
                     break;
-                case 101:
+				case null:
+                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["jx_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p>';	
+					break;
+				case 101:
                     html = '<p class="ec-h mt-5">'+ConFig["tips"]["qh_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
                     break;
                 case 102:
@@ -1302,7 +1300,7 @@ let PlayEr = {
         "api2":function(){
             if(PlayEr.empty(ConFig["MesData"]['api']) || PlayEr.empty(ConFig["MesData"]['id'])){return;}
             PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'/dp?id='+ConFig["MesData"]['id'], '', '', function (e,t) {
-                if(t['copy'] !== '超级播放器苹果cms接口，作者QQ602524950' || t['code'] === '0'){return}
+                if(t['code'] === '0'){return}
                 //临时存储获取的选集信息
                 sessionStorage.setItem("list",JSON.stringify(t));
             }, function () {
@@ -1311,7 +1309,7 @@ let PlayEr = {
         },
         "api":function(){
             PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'/dp?id='+ConFig["MesData"]['id'], '', '', function (e,t) {
-                if(t['copy'] !== '超级播放器苹果cms接口，作者QQ602524950' || t['code'] === '0'){return}
+                if(t['code'] === '0'){return}
                 //临时存储获取的选集信息
                 sessionStorage.setItem("list",JSON.stringify(t));
                 //插入html
