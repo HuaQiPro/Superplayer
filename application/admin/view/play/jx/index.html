@@ -1,0 +1,386 @@
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        {:build_heading(null, false)}
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#first" data-toggle="tab">解析设置</a></li>
+            <li><a href="#first2" data-toggle="tab">缓存设置</a></li>
+            <li><a href="#first3" data-toggle="tab">IP限制</a></li>
+            <li><a href="#first4" data-toggle="tab">提示插件</a></li>
+            <li><a href="#first5" data-toggle="tab">弹幕库</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+
+            <div class="tab-pane fade active in" id="first">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>多接口切换</td>
+                            <td>
+                                <select name="mode" class="form-control selectpicker">
+                                    <option value="0" {if condition="$player['mode'] eq 0"}selected {/if}>友好切换【解析失败用户可自由选择线路】</option>
+                                    <option value="1" {if condition="$player['mode'] eq 1"}selected {/if}>自动切换【解析失败后台自动更换解析】</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>秘钥</td>
+                            <td>
+                                <input type="text" name="key" value="{$player['key']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>iv值</td>
+                            <td>
+                                <input type="text" name="iv" value="{$player['iv']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>解析回源</td>
+                            <td>
+                                <label class="control-label col-xs-12">输入回源特征码 <span class="text-muted small">输入后<code>回车</code>或<code>,</code>确认</span></label>
+                                <div class="form-group row">
+                                    <div class="col-xs-12">
+                                        <input type="text" name="yuan" value="{$player['yuan']}" class="form-control" data-role="tagsinput" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>json配置</td>
+                            <td>
+                                <textarea name="api" class="form-control" rows="20">{$player['api']}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <div class="alert alert-success-light">
+                                一行一条json，格式为：支持的资源$接口地址||接口数据缓存||M3U8文件缓存时间||M3U8文件缓存扩展||伪造来路||资源类型<br>
+                                <br>
+                                1.支持的资源：推荐填写苹果cms中播放组编码也可填特征码，多个资源用,分割，例如wlm3u8,qq.com,youku,baidu
+                                <br><br>
+                                2.接口地址:json接口地址，地址中可以使用{ip}变量获取用户IP
+                                <br><br>
+                                3.接口数据缓存：json接口返回的数据缓存到自己服务器上，缓存有效期内不会在次请求接口而是直接使用缓存，0（不缓存）35（缓存有效时间35秒）
+                                <br>
+                                注：开启接口数据缓存后M3U8文件缓存功能的开启将被忽略
+                                <br><br>
+                                4.M3U8文件缓存：M3U8文件缓存到自己服务器上，缓存后在缓存有效期内不会请求接口， 0（不缓存） 1（永久有效）35（缓存有效时间35秒）
+                                <br><br>
+                                5.M3U8文件缓存扩展：加强M3U8功能，支持ts地址加密，插入广告，IP锁防盗，时效等功能，需安装扩展插件后开启，扩展插件300，联系作者购买0（不启用） 1（启用）
+                                <br><br>
+                                6.资源类型：auto（自动）mp4（mp4类型）m3u8（m3u8类型）flv（flv类型）hls(强制使用hls)
+                                <br><br>
+                                7.ua请求头：直接填0即可，可用作伪装域名请求验证等，有需求可填写，例如：User-Name: 超级播放器,User-Id: 6
+                            </div>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="first2">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <div class="alert alert-success-light">
+                                推荐使用Redis缓存，但需要安装Redis插件，宝塔可一键安装，具体方法百度《宝塔安装Redis》
+                                <br><br>
+                                如使用文件缓存方式会在public/player/cache目录中生成缓存文件，建议及时清理，可添加宝塔网址定时任务自动清理。
+                                <br>
+                                清理api地址：https://xxx.com/player/del.php?password=你设置的密码,(密码一定要修改).注：缓存清理后被封锁的ip都会解除
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>缓存方式</td>
+                            <td>
+                                {:build_radios('redis_type', ['1'=>__('File'),'2'=>__('Redis')], $player['redis_type'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>清理api密码</td>
+                            <td>
+                                <input type="text" name="password" value="{$player['password']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Redis服务器</td>
+                            <td>
+                                <input type="text" name="redis_host" value="{$player['redis_host']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Redis端口</td>
+                            <td>
+                                <input type="text" name="redis_port" value="{$player['redis_port']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Redis密码</td>
+                            <td>
+                                <input type="text" name="redis_pass" value="{$player['redis_pass']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="first3">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <div class="alert alert-success-light">
+                                【指定时间内】+【最大请求次数】代表指定时间内允许访问播放器的次数，如果超出限制在【封锁时间】内无法使用播放器，但限制次数一定要把握好以免正常用户被封锁
+                                <br>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>IP限制功能</td>
+                            <td>
+                                {:build_radios('IP', ['0'=>__('关闭'),'1'=>__('开启')], $player['IP'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>指定时间内/秒</td>
+                            <td>
+                                <input type="text" name="limit_time" value="{$player['limit_time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>最大请求次数</td>
+                            <td>
+                                <input type="text" name="limit_max" value="{$player['limit_max']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>封锁时间/秒</td>
+                            <td>
+                                <input type="text" name="limit_handle" value="{$player['limit_handle']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="first4">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>背景图</td>
+                            <td>
+                                <input type="text" name="tips[bj]" value="{$player['tips']['bj']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>背景图样式</td>
+                            <td>
+                                <select name="tips[style]" class="form-control selectpicker">
+                                    <option value="1" {if condition="$player['tips']['style'] eq 1"}selected {/if}>格子遮挡</option>
+                                    <option value="2" {if condition="$player['tips']['style'] eq 2"}selected {/if}>高斯模糊</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>空地址标题</td>
+                            <td>
+                                <input type="text" name="tips[empty_title]" value="{$player['tips']['empty_title']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>空地址提示内容</td>
+                            <td>
+                                <input type="text" name="tips[empty_txt]" value="{$player['tips']['empty_txt']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>解析失败标题</td>
+                            <td>
+                                <input type="text" name="tips[jx_title]" value="{$player['tips']['jx_title']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>解析失败提示内容</td>
+                            <td>
+                                <input type="text" name="tips[jx_txt]" value="{$player['tips']['jx_txt']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>线路切换标题</td>
+                            <td>
+                                <input type="text" name="tips[qh_title]" value="{$player['tips']['qh_title']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>线路切换提示内容</td>
+                            <td>
+                                <input type="text" name="tips[qh_txt]" value="{$player['tips']['qh_txt']}" class="form-control">
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>禁止访问标题</td>
+                            <td>
+                                <input type="text" name="tips[ip_title]" value="{$player['tips']['ip_title']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>禁止访问提示内容</td>
+                            <td>
+                                <input type="text" name="tips[ip_txt]" value="{$player['tips']['ip_txt']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>弹窗背景样式</td>
+                            <td>
+                                <select name="tips[vague]" class="form-control selectpicker">
+                                    <option value="1" {if condition="$player['tips']['vague'] eq 1"}selected {/if}>样式一</option>
+                                    <option value="2" {if condition="$player['tips']['vague'] eq 2"}selected {/if}>样式二</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="first5">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>弹幕数据缓存</td>
+                            <td>
+                                <input type="text" name="other[danMu_cache]" value="{$player['other']['danMu_cache']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕审核后显示</td>
+                            <td>
+                                {:build_radios('other[danMu_audit]', ['0'=>__('关闭'), '1'=>__('开启')], $player['other']['danMu_audit'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕内容限制</td>
+                            <td>
+                                {:build_radios('other[danMu_pro]', ['0'=>__('不限制'), '1'=>__('必须携带中文')], $player['other']['danMu_pro'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕禁用关键词</td>
+                            <td>
+                                <textarea name="other[danMu_vab]" class="form-control" rows="5">{$player.other.danMu_vab|htmlentities}</textarea>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

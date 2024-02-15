@@ -1,0 +1,1037 @@
+<div class="panel panel-default panel-intro">
+    <div class="panel-heading">
+        {:build_heading(null, false)}
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#first" data-toggle="tab">播放器设置</a></li>
+            <li><a href="#second" data-toggle="tab">广告设置</a></li>
+            <li><a href="#second2" data-toggle="tab">个性设置</a></li>
+            <li><a href="#second3" data-toggle="tab">更多设置</a></li>
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="first">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <tr>{:token()}</tr>
+                    <div class="form-group row">
+                        <div class="col-xs-12">
+                            <div style=" background-color: #f9f9f9;border-top: 1px solid #f4f4f4;padding: 10px;margin-bottom:15px">
+                                <span>选择播放器:</span>
+                                <input type="radio" data-url="https://dplayer.diygod.dev/zh/" name="row[player]" value="dp" {if condition="$player['row']['player'] eq 'dp'"}checked{/if} /> DpLayer 1.27.1
+                                <input type="radio" data-url="https://artplayer.org/document/" name="row[player]" value="art" {if condition="$player['row']['player'] eq 'art'"}checked{/if} /> ArtPlayer 4.6.3
+                                <input type="radio" data-url="https://www.ckplayer.com/" name="row[player]" value="ck" {if condition="$player['row']['player'] eq 'ck'"}checked{/if} /> CkLayer x3二开版
+                                <input type="radio" data-url="https://v2.h5player.bytedance.com/" name="row[player]" value="xg" {if condition="$player['row']['player'] eq 'xg'"}checked{/if} /> XiGua精简版
+                                <input type="radio" data-url="https://muiplayer.js.org/" name="row[player]" value="mp" {if condition="$player['row']['player'] eq 'mp'"}checked{/if} /> MuiPlayer
+                                <input type="radio" data-url="https://plyr.io/" name="row[player]" value="plyr" {if condition="$player['row']['player'] eq 'plyr'"}checked{/if} /> Plyr 3.7.8
+                            </div>
+                            <table data-favisible="player=dp" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th width="15%">设置项</th>
+                                    <th width="68%">选择参数</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>直播</td>
+                                    <td>
+                                        <input  id="c-switch" name="dp[live]" type="hidden" value="{$player['dp']['live']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.live eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>视频自动播放【只有静音模式下支持】</td>
+                                    <td>
+                                        <input  id="c-switch2" name="dp[autoplay]" type="hidden" value="{$player['dp']['autoplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch2" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.autoplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>语言</td>
+                                    <td>
+                                        <select name="dp[lang]" class="form-control selectpicker">
+                                            <option value="en" {if condition="$player['dp']['lang'] eq 'en'"}selected {/if}>英文</option>
+                                            <option value="zh-cn" {if condition="$player['dp']['lang'] eq 'zh-cn'"}selected {/if}>简体中文</option>
+                                            <option value="zh-tw" {if condition="$player['dp']['lang'] eq 'zh-tw'"}selected {/if}>繁体中文</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>开启截图[视频需支持跨域]</td>
+                                    <td>
+                                        <input  id="c-switch3" name="dp[screenshot]" type="hidden" value="{$player['dp']['screenshot']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch3" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.screenshot eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>开启热键[支持快进、快退、音量控制、播放暂停]</td>
+                                    <td>
+                                        <input  id="c-switch4" name="dp[hotkey]" type="hidden" value="{$player['dp']['hotkey']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch4" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.hotkey eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>镜像播放【iOS设备上的视频传送到支持airplay的设备上进行播放】</td>
+                                    <td>
+                                        <input  id="c-switch5" name="dp[airplay]" type="hidden" value="{$player['dp']['airplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch5" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.airplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>启用 Chromecast[同屏播放]</td>
+                                    <td>
+                                        <input  id="c-switch6" name="dp[chromecast]" type="hidden" value="{$player['dp']['chromecast']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch6" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.dp.chromecast eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>视频预加载[建议开启]</td>
+                                    <td>
+                                        <select name="dp[preload]" class="form-control selectpicker">
+                                            <option value="none" {if condition="$player['dp']['preload'] eq 'none'"}selected {/if}>不开启</option>
+                                            <option value="metadata" {if condition="$player['dp']['preload'] eq 'metadata'"}selected {/if}>metadata</option>
+                                            <option value="auto" {if condition="$player['dp']['preload'] eq 'auto'"}selected {/if}>开启</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认音量|范围0-1[用户手动设置音量后默认音量即失效]</td>
+                                    <td>
+                                        <input type="text" name="dp[volume]" value="{$player['dp']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>自定义倍速</td>
+                                    <td>
+                                        <input type="text" name="dp[playbackSpeed]" value="{$player['dp']['playbackSpeed']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>右键菜单</td>
+                                    <td>
+                                        <textarea name="dp[contextmenu]" class="form-control" rows="5">{$player.dp.contextmenu|htmlentities}</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-favisible="player=art" class="table">
+                                <tr>
+                                    <td>直播</td>
+                                    <td>
+                                        <input  id="c-switch7" name="art[isLive]" type="hidden" value="{$player['art']['isLive']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch7" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.isLive eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>视频自动播放【只有静音模式下支持】</td>
+                                    <td>
+                                        <input  id="c-switch8" name="art[autoplay]" type="hidden" value="{$player['art']['autoplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch8" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.autoplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>静音播放</td>
+                                    <td>
+                                        <input  id="c-switch9" name="art[muted]" type="hidden" value="{$player['art']['muted']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch9" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.muted eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认音量|范围0-1[用户手动设置音量后默认音量即失效]</td>
+                                    <td>
+                                        <input type="text" name="art[volume]" value="{$player['art']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>自动调整播放器尺寸</td>
+                                    <td>
+                                        <input  id="c-switch10" name="art[autoSize]" type="hidden" value="{$player['art']['autoSize']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch10" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.autoSize eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td>显示倍速</td>
+                                    <td>
+                                        <input  id="c-switch11" name="art[playbackRate]" type="hidden" value="{$player['art']['playbackRate']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch11" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.playbackRate eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>长宽比功能</td>
+                                    <td>
+                                        <input  id="c-switch12" name="art[aspectRatio]" type="hidden" value="{$player['art']['aspectRatio']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch12" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.aspectRatio eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>开启截图[视频需支持跨域]</td>
+                                    <td>
+                                        <input  id="c-switch13" name="art[screenshot]" type="hidden" value="{$player['art']['screenshot']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch13" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.screenshot eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否使用快捷键</td>
+                                    <td>
+                                        <input  id="c-switch14" name="art[hotkey]" type="hidden" value="{$player['art']['hotkey']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch14" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.hotkey eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>底部控制栏画中画</td>
+                                    <td>
+                                        <input  id="c-switch15" name="art[pip]" type="hidden" value="{$player['art']['pip']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch15" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.pip eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>全屏功能</td>
+                                    <td>
+                                        <input  id="c-switch16" name="art[fullscreen]" type="hidden" value="{$player['art']['fullscreen']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch16" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.fullscreen eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>迷你进度条，只在播放器失去焦点后且正在播放时出现</td>
+                                    <td>
+                                        <input  id="c-switch17" name="art[miniProgressBar]" type="hidden" value="{$player['art']['miniProgressBar']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch17" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.miniProgressBar eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>语言</td>
+                                    <td>
+                                        <select name="art[lang]" class="form-control selectpicker">
+                                            <option value="en" {if condition="$player['art']['lang'] eq 'en'"}selected {/if}>英文</option>
+                                            <option value="zh-cn" {if condition="$player['art']['lang'] eq 'zh-cn'"}selected {/if}>简体中文</option>
+                                            <option value="zh-tw" {if condition="$player['art']['lang'] eq 'zh-tw'"}selected {/if}>繁体中文</option>
+                                            <option value="cs" {if condition="$player['art']['lang'] eq 'cs'"}selected {/if}>捷克语</option>
+                                            <option value="pl" {if condition="$player['art']['lang'] eq 'pl'"}selected {/if}>波兰语</option>
+                                            <option value="es" {if condition="$player['art']['lang'] eq 'es'"}selected {/if}>西班牙语</option>
+                                            <option value="fa" {if condition="$player['art']['lang'] eq 'fa'"}selected {/if}>波斯语</option>
+                                            <option value="fr" {if condition="$player['art']['lang'] eq 'fr'"}selected {/if}>法语</option>
+                                            <option value="id" {if condition="$player['art']['lang'] eq 'id'"}selected {/if}>印尼语</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>移动端底部锁屏按钮</td>
+                                    <td>
+                                        <input  id="c-switch18" name="art[lock]" type="hidden" value="{$player['art']['lock']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch18" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.lock eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否在移动端添加长按视频快进功能</td>
+                                    <td>
+                                        <input  id="c-switch19" name="art[fastForward]" type="hidden" value="{$player['art']['fastForward']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch19" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.fastForward eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>镜像播放【iOS设备上的视频传送到支持airplay的设备上进行播放】</td>
+                                    <td>
+                                        <input  id="c-switch20" name="art[airplay]" type="hidden" value="{$player['art']['airplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch20" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.art.airplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>右键菜单</td>
+                                    <td>
+                                        <textarea name="art[contextmenu]" class="form-control" rows="5">{$player.art.contextmenu|htmlentities}</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-favisible="player=ck" class="table">
+                                <tr>
+                                    <td>直播</td>
+                                    <td>
+                                        <input  id="c-switch21" name="ck[live]" type="hidden" value="{$player['ck']['live']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch21" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.live eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>自动播放【只有静音模式下支持】</td>
+                                    <td>
+                                        <input  id="c-switch22" name="ck[autoplay]" type="hidden" value="{$player['ck']['autoplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch22" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.autoplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>控制栏隐藏时间[1000 = 1秒]</td>
+                                    <td>
+                                        <input type="text" name="ck[barHideTime]" value="{$player['ck']['barHideTime']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认音量|范围0-1</td>
+                                    <td>
+                                        <input type="text" name="ck[volume]" value="{$player['ck']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否开启控制栏倍速选项</td>
+                                    <td>
+                                        <input  id="c-switch24" name="ck[playbackrateOpen]" type="hidden" value="{$player['ck']['playbackrateOpen']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch24" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.playbackrateOpen eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>离开窗口后暂停播放</td>
+                                    <td>
+                                        <input  id="c-switch25" name="ck[documentFocusPause]" type="hidden" value="{$player['ck']['documentFocusPause']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch25" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.documentFocusPause eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否启用鼠标滚轮调节音量功能</td>
+                                    <td>
+                                        <input  id="c-switch26" name="ck[mouseWheelVolume]" type="hidden" value="{$player['ck']['mouseWheelVolume']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch26" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.mouseWheelVolume eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否启用键盘控制音量调节</td>
+                                    <td>
+                                        <input  id="c-switch27" name="ck[keyVolume]" type="hidden" value="{$player['ck']['keyVolume']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch27" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.ck.keyVolume eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>倍速配置值</td>
+                                    <td>
+                                        <input type="text" name="ck[playbackrateList]" value="{$player['ck']['playbackrateList']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>右键菜单</td>
+                                    <td>
+                                        <textarea name="ck[contextmenu]" class="form-control" rows="5">{$player.ck.contextmenu|htmlentities}</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-favisible="player=xg" class="table">
+                                <tr>
+                                    <td>默认音量|范围0-1[用户手动设置音量后默认音量即失效]</td>
+                                    <td>
+                                        <input type="text" name="xg[volume]" value="{$player['xg']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>初始化显示视频首帧【移动端无效】</td>
+                                    <td>
+                                        <input  id="c-switch29" name="xg[videoInit]" type="hidden" value="{$player['xg']['videoInit']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch29" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.xg.videoInit eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>倍速参数【不设置任何参数不显示倍速按钮】</td>
+                                    <td>
+                                        <input type="text" name="xg[playbackRate]" value="{$player['xg']['playbackRate']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>画中画</td>
+                                    <td>
+                                        <input  id="c-switch30" name="xg[pip]" type="hidden" value="{$player['xg']['pip']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch30" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.xg.pip eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>截图</td>
+                                    <td>
+                                        <input  id="c-switch31" name="xg[screenShot]" type="hidden" value="{$player['xg']['screenShot']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch31" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.xg.screenShot eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>快捷键功能</td>
+                                    <td>
+                                        <input  id="c-switch32" name="xg[keyShortcut]" type="hidden" value="{$player['xg']['keyShortcut']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch32" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.xg.keyShortcut eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>镜像播放【iOS设备上的视频传送到支持airplay的设备上进行播放】</td>
+                                    <td>
+                                        <input  id="c-switch33" name="xg[airplay]" type="hidden" value="{$player['xg']['airplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch33" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.xg.airplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>语言</td>
+                                    <td>
+                                        <select name="xg[lang]" class="form-control selectpicker">
+                                            <option value="en" {if condition="$player['xg']['lang'] eq 'en'"}selected {/if}>英文</option>
+                                            <option value="zh-cn" {if condition="$player['xg']['lang'] eq 'zh-cn'"}selected {/if}>简体中文</option>
+                                            <option value="jp" {if condition="$player['xg']['lang'] eq 'jp'"}selected {/if}>日语</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-favisible="player=mp" class="table">
+                                <tr>
+                                    <td>自动播放【只有静音模式下支持】</td>
+                                    <td>
+                                        <input  id="c-switch34" name="mp[autoplay]" type="hidden" value="{$player['mp']['autoplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch34" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.autoplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否循环播放</td>
+                                    <td>
+                                        <input  id="c-switch35" name="mp[loop]" type="hidden" value="{$player['mp']['loop']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch35" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.loop eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否静音播放</td>
+                                    <td>
+                                        <input  id="c-switch36" name="mp[muted]" type="hidden" value="{$player['mp']['muted']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch36" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.muted eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>语言</td>
+                                    <td>
+                                        <select name="mp[lang]" class="form-control selectpicker">
+                                            <option value="en" {if condition="$player['mp']['lang'] eq 'en'"}selected {/if}>英文</option>
+                                            <option value="zh-cn" {if condition="$player['mp']['lang'] eq 'zh-cn'"}selected {/if}>简体中文</option>
+                                            <option value="zh-tw" {if condition="$player['mp']['lang'] eq 'zh-tw'"}selected {/if}>繁体中文</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认音量|范围0-1[用户手动设置音量后默认音量即失效]</td>
+                                    <td>
+                                        <input type="text" name="mp[volume]" value="{$player['mp']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>开启直播</td>
+                                    <td>
+                                        <input  id="c-switch38" name="mp[live]" type="hidden" value="{$player['mp']['live']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch38" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.live eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>全屏后自动切换方向</td>
+                                    <td>
+                                        <input  id="c-switch39" name="mp[autoOrientaion]" type="hidden" value="{$player['mp']['autoOrientaion']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch39" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.autoOrientaion eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>进度条拖动点形状</td>
+                                    <td>
+                                        <select name="mp[dragSpotShape]" class="form-control selectpicker">
+                                            <option value="0" {if condition="$player['mp']['dragSpotShape'] eq '0'"}selected {/if}>圆圈</option>
+                                            <option value="1" {if condition="$player['mp']['dragSpotShape'] eq '1'"}selected {/if}>长条</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>控制栏隐藏时间[1000 = 1秒]</td>
+                                    <td>
+                                        <input type="text" name="mp[closeControlsTimer]" value="{$player['mp']['closeControlsTimer']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否显示迷你进度条</td>
+                                    <td>
+                                        <input  id="c-switch40" name="mp[showMiniProgress]" type="hidden" value="{$player['mp']['showMiniProgress']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch40" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.mp.showMiniProgress eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>右键菜单</td>
+                                    <td>
+                                        <textarea name="mp[contextmenu]" class="form-control" rows="5">{$player.mp.contextmenu|htmlentities}</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table data-favisible="player=plyr" class="table">
+                                <tr>
+                                    <td>是否显示设置</td>
+                                    <td>
+                                        <input  id="c-switch41" name="plyr[settings]" type="hidden" value="{$player['plyr']['settings']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch41" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.settings eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否显示画中画</td>
+                                    <td>
+                                        <input  id="c-switch42" name="plyr[pip]" type="hidden" value="{$player['plyr']['pip']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch42" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.pip eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>镜像播放【iOS设备上的视频传送到支持airplay的设备上进行播放】</td>
+                                    <td>
+                                        <input  id="c-switch43" name="plyr[airplay]" type="hidden" value="{$player['plyr']['airplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch43" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.airplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否显示全屏</td>
+                                    <td>
+                                        <input  id="c-switch44" name="plyr[fullscreen]" type="hidden" value="{$player['plyr']['fullscreen']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch44" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.fullscreen eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>是否启用快捷键</td>
+                                    <td>
+                                        <input  id="c-switch45" name="plyr[keyboard]" type="hidden" value="{$player['plyr']['keyboard']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch45" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.keyboard eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>视频自动播放【只有静音模式下支持】</td>
+                                    <td>
+                                        <input  id="c-switch46" name="plyr[autoplay]" type="hidden" value="{$player['plyr']['autoplay']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch46" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.autoplay eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认音量</td>
+                                    <td>
+                                        <input type="text" name="plyr[volume]" value="{$player['plyr']['volume']}" class="form-control">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>默认静音播放</td>
+                                    <td>
+                                        <input  id="c-switch47" name="plyr[muted]" type="hidden" value="{$player['plyr']['muted']}">
+                                        <a href="javascript:" data-toggle="switcher" class="btn-switcher" data-input-id="c-switch47" data-yes="1" data-no="0" >
+                                            <i class="fa fa-toggle-on text-success {if condition="$player.plyr.muted eq 0"}fa-flip-horizontal text-gray{/if} fa-2x"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>自定义语言</td>
+                                    <td>
+                                        <textarea name="plyr[i18n]" class="form-control" rows="5">{$player.plyr.i18n|htmlentities}</textarea>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layer-footer">
+                        <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                        <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="second">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>显示广告的用户组</td>
+                            <td>
+                                <div class="form-group row">
+                                    <label class="control-label col-xs-12">输入用户组名 <span class="text-muted small">输入后<code>回车</code>或<code>,</code>确认</span></label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="ads[user]" value="{$player['ads']['user']}" class="form-control" data-role="tagsinput" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>广告类型</td>
+                            <td>
+                                {:build_radios('ads[state]', ['0'=>__('图片广告'), '1'=>__('视频广告')], $player['ads']['state'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>图片广告时间/秒</td>
+                            <td>
+                                <input type="text" name="ads[pic][time]" value="{$player['ads']['pic']['time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>广告图片</td>
+                            <td>
+                                <div class="input-group">
+                                    <input id="c-image2" class="form-control" size="35" name="ads[pic][img]" value="{$player['ads']['pic']['img']}"  type="text">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-image2" class="btn btn-danger faupload" data-input-id="c-image2" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image2"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-image2" class="btn btn-primary fachoose" data-input-id="c-image2" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-image2"></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>图片广告链接</td>
+                            <td>
+                                <input type="text" name="ads[pic][link]" value="{$player['ads']['pic']['link']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>视频地址</td>
+                            <td>
+                                <input type="text" name="ads[vod][time]" value="{$player['ads']['vod']['time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>视频广告链接</td>
+                            <td>
+                                <input type="text" name="ads[vod][link]" value="{$player['ads']['vod']['link']}" class="form-control">
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>暂停广告</td>
+                            <td>
+                                {:build_radios('ads[pause][state]', ['1'=>__('开启'), '2'=>__('关闭')], $player['ads']['pause']['state'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>暂停广告图片</td>
+                            <td>
+                                <div class="input-group">
+                                    <input id="c-image5" class="form-control" size="35" name="ads[pause][img]" value="{$player['ads']['pause']['img']}" type="text">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-image5" class="btn btn-danger faupload" data-input-id="c-image5" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image5"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-image5" class="btn btn-primary fachoose" data-input-id="c-image5" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-image5"></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>暂停广告链接</td>
+                            <td>
+                                <input type="text" name="ads[pause][link]" value="{$player['ads']['pause']['link']}" class="form-control">
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="second2">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>皮肤编号【可看自定义皮肤说明了解】</td>
+                            <td>
+                                <input type="text" name="number" value="{$player['number']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>加载等待时间/秒/填0不显示</td>
+                            <td>
+                                <input type="text" name="wait_time" value="{$player['wait_time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>加载文字颜色</td>
+                            <td>
+                                <input type="text" name="wait_color" value="{$player['wait_color']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>加载背景图</td>
+                            <td>
+                                {:build_radios('random', ['0'=>__('固定'), '1'=>__('随机')], $player['random'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>固定背景图</td>
+                            <td>
+                                <div class="input-group">
+                                    <input id="c-image3" class="form-control" size="35" name="gx[pic]" value="{$player['gx']['pic']}"  type="text">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-image3" class="btn btn-danger faupload" data-input-id="c-image3" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image3"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-image3" class="btn btn-primary fachoose" data-input-id="c-image3" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-image3"></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>随机背景图</td>
+                            <td>
+                                <textarea name="random_img" class="form-control" rows="5">{$player.random_img|htmlentities}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>播放器主题色</td>
+                            <td>
+                                <input type="text" name="gx[color]" value="{$player['gx']['color']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td>播放器LOGO</td>
+                            <td>
+                                <div class="input-group">
+                                    <input id="c-image10" class="form-control" size="35" name="gx[logo]" type="text" value="{$player['gx']['logo']}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="faupload-image10" class="btn btn-danger faupload" data-input-id="c-image10" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image10"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <span><button type="button" id="fachoose-image10" class="btn btn-primary fachoose" data-input-id="c-image10" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right"></span>
+                                </div>
+                                <ul class="row list-inline faupload-preview" id="p-image10"></ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LOGO位置</td>
+                            <td>
+                                <select name="gx[logo_position]" class="form-control selectpicker">
+                                    <option value="1" {if condition="$player['gx']['logo_position'] eq 1"}selected {/if}>左上角</option>
+                                    <option value="2" {if condition="$player['gx']['logo_position'] eq 2"}selected {/if}>右上角</option>
+                                    <option value="3" {if condition="$player['gx']['logo_position'] eq 3"}selected {/if}>左下角</option>
+                                    <option value="4" {if condition="$player['gx']['logo_position'] eq 4"}selected {/if}>右下角</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>电脑LOGO宽度（高度自适应）</td>
+                            <td>
+                                <input type="text" name="gx[pc_logo_width]" value="{$player['gx']['pc_logo_width']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>手机LOGO宽度（高度自适应）</td>
+                            <td>
+                                <input type="text" name="gx[wap_logo_width]" value="{$player['gx']['wap_logo_width']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>跑马灯</td>
+                            <td>
+                                {:build_radios('gx[marquee_s]', ['0'=>__('关闭'),'1'=>__('开启')], $player['gx']['marquee_s'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>跑马灯滚动时间（秒/0无限）</td>
+                            <td>
+                                <input type="text" name="gx[marquee_time]" value="{$player['gx']['marquee_time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>跑马灯内容</td>
+                            <td>
+                                <input type="text" name="gx[marquee]" value="{$player['gx']['marquee']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>跑马灯文字颜色</td>
+                            <td>
+                                <input type="text" name="gx[marquee_style]" value="{$player['gx']['marquee_style']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>跑马灯速度（单位秒）</td>
+                            <td>
+                                <input type="text" name="gx[marquee_speed]" value="{$player['gx']['marquee_speed']}" class="form-control">
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="second3">
+                <form class="edit-form form-horizontal nice-validator n-default n-bootstrap" role="form" data-toggle="validator" method="POST" action="" novalidate="novalidate">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="15%">设置项</th>
+                            <th width="68%">选择参数</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>{:token()}</tr>
+                        <tr>
+                            <td>移动端全屏自动横屏</td>
+                            <td>
+                                {:build_radios('autoOrientation', ['0'=>__('关闭'), '1'=>__('开启')], $player['autoOrientation'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>外挂字幕</td>
+                            <td>
+                                {:build_radios('zm_off', ['0'=>__('关闭'),'1'=>__('开启')], $player['zm_off'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>字幕样式</td>
+                            <td>
+                                <input type="text" name="zm_style" value="{$player['zm_style']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>试看用户组</td>
+                            <td>
+                                <div class="form-group row">
+                                    <label class="control-label col-xs-12">输入用户组名 <span class="text-muted small">输入后<code>回车</code>或<code>,</code>确认</span></label>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="try-user" value="{$player['try-user']}" class="form-control" data-role="tagsinput" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>试看时间/秒</td>
+                            <td>
+                                <input type="text" name="try-time" value="{$player['try-time']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>侧边菜单位置</td>
+                            <td>
+                                <select name="seat" class="form-control selectpicker">
+                                    <option value="0" {if condition="$player['seat'] eq 0"}selected {/if}>左边</option>
+                                    <option value="1" {if condition="$player['seat'] eq 1"}selected {/if}>右边</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>画中画</td>
+                            <td>
+                                {:build_radios('pip', ['0'=>__('关闭'), '1'=>__('开启')], $player['pip'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>画面旋转</td>
+                            <td>
+                                {:build_radios('revolve', ['0'=>__('关闭'), '1'=>__('开启')], $player['revolve'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>锁屏【移动端有效】</td>
+                            <td>
+                                {:build_radios('lock', ['0'=>__('关闭'), '1'=>__('开启')], $player['lock'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>下一集按钮</td>
+                            <td>
+                                {:build_radios('next_bnt', ['0'=>__('关闭'), '1'=>__('开启')], $player['next_bnt'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>自动下一集</td>
+                            <td>
+                                {:build_radios('next_auto', ['0'=>__('关闭'), '1'=>__('开启')], $player['next_auto'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>下一集等待时间/秒</td>
+                            <td>
+                                <input type="text" name="next_time" value="{$player['next_time']}" class="form-control">
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>存储方式</td>
+                            <td>
+                                <select name="rm" class="form-control selectpicker">
+                                    <option value="2" {if condition="$player['rm'] eq 2"}selected {/if}>Cookie</option>
+                                    <option value="1" {if condition="$player['rm'] eq 1"}selected {/if}>Local Storage</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>显示时间</td>
+                            <td>
+                                {:build_radios('time', ['0'=>__('关闭'), '1'=>__('开启')], $player['time'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>显示电量</td>
+                            <td>
+                                {:build_radios('qfe', ['0'=>__('关闭'), '1'=>__('开启')], $player['qfe'])}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>弹幕开关</td>
+                            <td>
+                                {:build_radios('danMu_on', ['0'=>__('关闭'), '1'=>__('开启')], $player['danMu_on'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕接口</td>
+                            <td>
+                                <textarea name="danMu_api" class="form-control" rows="5">{$player.danMu_api|htmlentities}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕输入框</td>
+                            <td>
+                                {:build_radios('danMu_input', ['0'=>__('不显示'),'1'=>__('显示'), '2'=>__('仅全屏模式显示')], $player['danMu_input'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕发布限制</td>
+                            <td>
+                                {:build_radios('danMu_user', ['0'=>__('不限制'), '1'=>__('需登录')], $player['danMu_user'])}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕发送间隔</td>
+                            <td>
+                                <input type="text" name="danMu_interval" value="{$player['danMu_interval']}" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>弹幕长度限制</td>
+                            <td>
+                                <input type="text" name="danMu_length" value="{$player['danMu_length']}" class="form-control">
+                            </td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="layer-footer">
+                                    <button type="submit" class="btn btn-primary btn-embossed">{:__('OK')}</button>
+                                    <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
