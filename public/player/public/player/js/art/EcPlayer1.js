@@ -413,23 +413,51 @@ let PlayEr = {
             let html = '';
             switch(ConFig["code"]) {
                 case 304:
-                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["ip_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["ip_txt"]+'</p>';
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["ip_txt"] + '</p>';
+                    } else {
+                        html = '<p class="ec-h mt-5">' + ConFig["tips"]["ip_title"] + '</p><p class="ec-txt">' + ConFig["tips"]["ip_txt"] + '</p>';
+                    }
                     break;
-                case 301:
-                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["empty_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["empty_txt"]+'</p>';
+				case 301:
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["empty_txt"] + '</p>';
+                    } else {
+                        html = '<p class="ec-h mt-5">'+ConFig["tips"]["empty_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["empty_txt"]+'</p>';
+                    }
                     break;
-                case 0:
-                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["jx_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p>';
+				case 0:
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["jx_txt"] + '</p>';
+                    } else {
+                       html = '<p class="ec-h mt-5">'+ConFig["tips"]["jx_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p>';
+                    }
                     break;
-                case 101:
-                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["qh_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+				case null:
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["jx_txt"] + '</p>';
+                    } else {
+                       html = '<p class="ec-h mt-5">'+ConFig["tips"]["jx_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p>';
+                    }
                     break;
-                case 102:
-                    html = '<p class="ec-h mt-5">'+ConFig["tips"]["qh_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["qh_txt"]+'</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+				case 101:
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["jx_txt"] + '</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+                    } else {
+                        html = '<p class="ec-h mt-5">'+ConFig["tips"]["qh_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["jx_txt"]+'</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+                    }
                     break;
-                case 103:
+				case 102:
+                    if (isMobileDevice()) {
+                        html = '<a href="https://www.huaqi.live/Cache/u.php" target="_blank"><img src="https://www.huaqi.live/Cache/url.php"></a><p class="ec-txt">' + ConFig["tips"]["qh_txt"] + '</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+                    } else {
+                        html = '<p class="ec-h mt-5">'+ConFig["tips"]["qh_title"]+'</p><p class="ec-txt">'+ConFig["tips"]["qh_txt"]+'</p><div class="api_switch flex center">'+ConFig["html"]+'</div>';
+                    }
+                    break;
+				case 103:
                     console.error("未匹配到接口地址返回原地址");
                     break;
+      
             }
             return html;
         },
@@ -1569,6 +1597,9 @@ let PlayEr = {
         }
     }
 };
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 $(function(){
     if(PlayEr.GetRequest()['if'] === "1"){
         PlayEr.mes('');
