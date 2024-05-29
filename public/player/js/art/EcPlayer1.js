@@ -104,7 +104,9 @@ let PlayEr = {
         if(!PlayEr.empty(g["name"])){
             ConFig["MesData"]["name"] = g["name"];
         }
-
+        if(!PlayEr.empty(g["ename"])){
+            ConFig["MesData"]["ename"] = g["ename"];
+        }
         let list = sessionStorage.getItem("list");
         if(!PlayEr.empty(list) && !PlayEr.empty(ConFig["MesData"]["sid"])){
             let listData =  JSON.parse(list);
@@ -1328,7 +1330,7 @@ let PlayEr = {
         },
         "api2":function(){
             if(PlayEr.empty(ConFig["MesData"]['api']) || PlayEr.empty(ConFig["MesData"]['id'])){return;}
-            PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'/dp?id='+ConFig["MesData"]['id'], '', '', function (e,t) {
+            PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'?ids='+ConFig["MesData"]['id']+'&fix='+ConFig["MesData"]['ename'], '', '', function (e,t) {
                 if(t['copy'] !== '超级播放器苹果cms接口，作者QQ602524950' || t['code'] === '0'){return}
                 //临时存储获取的选集信息
                 sessionStorage.setItem("list",JSON.stringify(t));
@@ -1337,7 +1339,7 @@ let PlayEr = {
             });
         },
         "api":function(){
-            PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'/dp?id='+ConFig["MesData"]['id'], '', '', function (e,t) {
+            PlayEr.danMu.apiBackend.api(ConFig["MesData"]['api']+'?ids='+ConFig["MesData"]['id']+'&fix='+ConFig["MesData"]['ename'], '', '', function (e,t) {
                 if(t['copy'] !== '超级播放器苹果cms接口，作者QQ602524950' || t['code'] === '0'){return}
                 //临时存储获取的选集信息
                 sessionStorage.setItem("list",JSON.stringify(t));
@@ -1401,7 +1403,7 @@ let PlayEr = {
             $(".new-url li").click(function(){
                 $(this).addClass("d-on").siblings().removeClass("d-on");
                 let data = $(this).children().data();
-                window.location = "/player/index.php?code="+PlayEr.GetRequest()["code"]+"&url="+data['url']+'&sid='+$(".new-from .on").data("id")+'&nid='+data['id']+"&if=1";
+                window.location = "/player/index.php?code="+PlayEr.GetRequest()["code"]+"&url="+data['url']+"&if=1";
             });
         },
         "set":function(){
@@ -1417,9 +1419,7 @@ let PlayEr = {
         "getNextUrl":function(){
             let data = ConFig["MesData"];
             window.location = "/player/index.php?code="+PlayEr.GetRequest()["code"]+
-                "&url="+data['next']+
-                '&sid='+(data['sid'])+
-                '&nid='+(Number(data['nid'])+1)+"&if=1";
+                "&url="+data['next']+"&if=1";
         },
         "next":function(){
             if(PlayEr.empty(ConFig["MesData"]["next"]) === false && ConFig["config"]['next_bnt'] === '1'){
