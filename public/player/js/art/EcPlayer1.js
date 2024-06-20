@@ -136,7 +136,7 @@ let PlayEr = {
             case 'auto':
                 if (/.flv(#|\?|$)/i.exec(s)) {
                     t = 'flv';
-				else if (/.mp4(#|\?|$)/i.exec(s)) {
+				}else if (/.mp4(#|\?|$)/i.exec(s)) {
                     t = 'mp4';
                 } else if (/m3u8(#|\?|$)/i.exec(s)) {
                     t = 'm3u8';
