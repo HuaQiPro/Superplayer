@@ -129,8 +129,8 @@ let PlayEr = {
         PlayEr.Init();
     },
     "type":function(s){
-		console.log(s);
-		console.log(ConFig['type']);
+		//console.log(s);
+		//console.log(ConFig['type']);
         let t = "mp4";
         switch (ConFig['type']) {
             case 'auto':
