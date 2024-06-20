@@ -129,12 +129,15 @@ let PlayEr = {
         PlayEr.Init();
     },
     "type":function(s){
+		console.log(s);
 		console.log(ConFig['type']);
         let t = "mp4";
         switch (ConFig['type']) {
             case 'auto':
                 if (/.flv(#|\?|$)/i.exec(s)) {
                     t = 'flv';
+				else if (/.mp4(#|\?|$)/i.exec(s)) {
+                    t = 'mp4';
                 } else if (/m3u8(#|\?|$)/i.exec(s)) {
                     t = 'm3u8';
                 } else if (/.php(#|\?|$)/i.exec(s)) {
@@ -143,9 +146,6 @@ let PlayEr = {
                     t = 'm3u8';
                 } else if (/.png(#|\?|$)/i.exec(s)) {
                     t = 'm3u8';
-                }
-				else if (/.mp4(#|\?|$)/i.exec(s)) {
-                    t = 'mp4';
                 }
                 break;
             case 'm3u8':
@@ -254,17 +254,7 @@ let PlayEr = {
                 }
             }
         }
-		else if (t === 'mp4') {
-    // MP4类型视频播放器设置
-    playData["type"] = 'auto';
-    playData["url"] = u;
-    playData["autoplay"] = true; // 可以根据需要设置自动播放
-    playData["customType"] = {
-        auto: function playAuto(video, url, art) {
-            video.src = url;
-        }
-    };
-}
+		
         let contextmenu = art["contextmenu"].split('#');
         let data = [];
         for (let i=0; i<contextmenu.length; i++) {
