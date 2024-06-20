@@ -129,6 +129,7 @@ let PlayEr = {
         PlayEr.Init();
     },
     "type":function(s){
+		console.log(ConFig['type']);
         let t = "mp4";
         switch (ConFig['type']) {
             case 'auto':
@@ -142,6 +143,9 @@ let PlayEr = {
                     t = 'm3u8';
                 } else if (/.png(#|\?|$)/i.exec(s)) {
                     t = 'm3u8';
+                }
+				else if (/.mp4(#|\?|$)/i.exec(s)) {
+                    t = 'mp4';
                 }
                 break;
             case 'm3u8':
